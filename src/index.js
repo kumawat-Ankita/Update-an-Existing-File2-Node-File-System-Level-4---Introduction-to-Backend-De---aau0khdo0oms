@@ -1,11 +1,20 @@
 const fs = require('fs').promises;
-const fileName = 'myfile.txt';
+const updateFile = require('./index');
 
 const updateFile = async (fileName, fileContent) => {
-    //Write your code here to overwrite the file content
-    //Don't change function name
-    
+    try {
+        await fs.writeFile(fileName, fileContent);
+        console.log(`File "${fileName}" has been updated.`);
+    } catch (error) {
+        console.error(`Error updating file "${fileName}":`, error);
+    }
 };
+const fileName = 'myfile.txt';
+const newContent = 'Newton School, is an online learning platform.';
+
+updateFile(fileName, newContent);
 
 
 module.exports = updateFile;
+
+
